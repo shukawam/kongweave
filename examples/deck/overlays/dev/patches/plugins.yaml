@@ -1,0 +1,11 @@
+patches:
+  - op: add
+    target:
+      kind: plugins
+      name: cors
+      scope: {service: catalog}
+    value:
+      name: cors
+      config:
+        origins: [http://localhost:3000]
+        methods: [GET]

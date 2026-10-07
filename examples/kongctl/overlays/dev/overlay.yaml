@@ -1,0 +1,6 @@
+apiVersion: kongweave/v1alpha1
+format: kongctl
+base:
+  file: ../../base/config.yaml
+patches:
+  - patches/environment.yaml

@@ -1,0 +1,83 @@
+_defaults:
+  kongctl:
+    namespace: kongweave-demo
+portals:
+  - ref: developer-portal
+    name: kongweave-developer-portal
+    display_name: Example Developer Portal
+    authentication_enabled: false
+    default_api_visibility: public
+    default_page_visibility: public
+    pages:
+      - ref: welcome-page
+        slug: welcome
+        title: Welcome
+        content: !file docs/welcome.md
+        visibility: public
+        status: published
+apis:
+  - ref: catalog-api
+    name: Example Catalog
+    description: !file docs/catalog.md
+    versions:
+      - ref: catalog-v1
+        version: v1
+        spec: !file specs/catalog.yaml
+    publications:
+      - ref: catalog-publication
+        portal_id: !ref developer-portal#id
+        visibility: public
+ai_gateways:
+  - ref: example-ai
+    name: example-ai
+    display_name: Example AI Gateway
+    description: Offline overlay demonstration
+    model_providers:
+      - ref: example-provider
+        name: example-provider
+        display_name: Example OpenAI-compatible Provider
+        type: openai
+        config:
+          auth:
+            type: basic
+            headers:
+              - name: Authorization
+                value: !secret
+                  parts:
+                    - "Bearer "
+                    - !env KONGWEAVE_DEMO_TOKEN
+    policies:
+      - ref: redact-email
+        name: redact-email
+        display_name: Redact email addresses
+        type: ai-sanitizer
+        enabled: true
+        global: false
+        config:
+          anonymize: [email]
+    models:
+      - ref: example-chat
+        name: example-chat
+        display_name: Example Chat
+        type: model
+        enabled: true
+        formats:
+          - type: openai
+        capabilities: [generate]
+        config:
+          route:
+            paths: [/chat]
+            model:
+              body_param: model
+              values: [example-chat]
+          logging:
+            payloads: false
+        targets:
+          - name: example-model
+            provider: example-provider
+            config:
+              type: openai
+              upstream_url: https://llm.example.com/v1/chat/completions
+              max_tokens: 256
+        policies:
+          - !ref redact-email#name

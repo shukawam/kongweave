@@ -1,0 +1,30 @@
+_format_version: "3.0"
+services:
+  - name: catalog
+    host: catalog.example.com
+    protocol: https
+    port: 443
+    connect_timeout: 1000
+    read_timeout: 10000
+    plugins:
+      - name: rate-limiting
+        config:
+          minute: 1000
+          policy: local
+          limit_by: ip
+    routes:
+      - name: catalog-public
+        paths: [/catalog]
+        methods: [GET]
+        strip_path: true
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 60
+              policy: local
+              limit_by: ip
+plugins:
+  - name: response-transformer
+    config:
+      add:
+        headers: ["X-Example: Kongweave"]

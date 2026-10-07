@@ -1,0 +1,27 @@
+patches:
+  - op: merge
+    target: {kind: apis, ref: catalog-api}
+    value:
+      description: !file docs/catalog.md
+  - op: merge
+    target: {kind: ai_gateways, ref: example-ai}
+    value:
+      display_name: Example AI Gateway - Development
+      kongctl:
+        namespace: kongweave-dev
+  - op: merge
+    target:
+      kind: ai_gateway_models
+      ref: example-chat
+      scope: {ai_gateway: example-ai}
+    value:
+      config:
+        route:
+          paths: [/dev/chat]
+      targets:
+        - name: example-model-dev
+          provider: example-provider
+          config:
+            type: openai
+            upstream_url: https://llm.dev.example.com/v1/chat/completions
+            max_tokens: 128

@@ -1,0 +1,32 @@
+patches:
+  - op: merge
+    target: {kind: ai_gateways, ref: example-ai}
+    value:
+      display_name: Example AI Gateway - Production
+      kongctl:
+        namespace: kongweave-prod
+        protected: true
+  - op: merge
+    target:
+      kind: ai_gateway_models
+      ref: example-chat
+      scope: {ai_gateway: example-ai}
+    value:
+      config:
+        route:
+          paths: [/v1/chat]
+      targets:
+        - name: example-model-prod
+          provider: example-provider
+          config:
+            type: openai
+            upstream_url: https://llm.prod.example.com/v1/chat/completions
+            max_tokens: 4096
+  - op: merge
+    target:
+      kind: ai_gateway_policies
+      ref: redact-email
+      scope: {ai_gateway: example-ai}
+    value:
+      config:
+        anonymize: [email, phone]

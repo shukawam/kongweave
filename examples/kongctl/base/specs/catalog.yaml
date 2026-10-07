@@ -1,0 +1,13 @@
+openapi: 3.0.3
+info:
+  title: Example Catalog
+  version: 1.0.0
+servers:
+  - url: https://catalog.example.com
+paths:
+  /items:
+    get:
+      operationId: listItems
+      responses:
+        '200':
+          description: A list of example items

@@ -1,0 +1,33 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        go: ['1.23.12', '1.27.1']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - name: Format
+        run: test -z "$(gofmt -l cmd internal)"
+      - run: go vet ./...
+      - run: go test -race ./...
+      - run: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts -p 'test_*.py'
+      - run: go build -trimpath -o bin/kongweave ./cmd/kongweave
+      - name: Build sample artifacts
+        run: |
+          bin/kongweave build examples/deck/overlays/dev -o dist/deck-dev
+          bin/kongweave build examples/deck/overlays/prod -o dist/deck-prod
+          bin/kongweave build examples/kongctl/overlays/dev -o dist/kongctl-dev
+          bin/kongweave build examples/kongctl/overlays/prod -o dist/kongctl-prod

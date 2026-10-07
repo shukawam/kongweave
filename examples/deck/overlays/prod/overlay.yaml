@@ -1,0 +1,7 @@
+apiVersion: kongweave/v1alpha1
+format: deck
+base:
+  overlay: ../common/overlay.yaml
+patches:
+  - patches/environment.yaml
+  - patches/plugins.yaml

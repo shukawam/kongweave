@@ -1,0 +1,18 @@
+patches:
+  - op: merge
+    target: {kind: services, name: catalog}
+    value:
+      host: catalog.prod.example.com
+      read_timeout: 5000
+  - op: merge
+    target:
+      kind: plugins
+      name: rate-limiting
+      scope: {route: catalog-public}
+    value:
+      config:
+        minute: 600
+  - op: replace
+    target: {kind: routes, name: catalog-public}
+    field: /methods
+    value: [GET, HEAD]

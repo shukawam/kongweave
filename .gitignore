@@ -1,0 +1,9 @@
+/bin/
+/dist/
+/coverage.out
+*.test
+.DS_Store
+/.local/
+/docs/design.md
+/docs/verification.md
+__pycache__/

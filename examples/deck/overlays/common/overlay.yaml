@@ -1,0 +1,6 @@
+apiVersion: kongweave/v1alpha1
+format: deck
+base:
+  file: ../../base/kong.yaml
+patches:
+  - timeouts.yaml

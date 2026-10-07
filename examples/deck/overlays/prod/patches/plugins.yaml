@@ -1,0 +1,15 @@
+patches:
+  - op: remove
+    target:
+      kind: plugins
+      name: response-transformer
+      scope: {}
+  - op: add
+    target:
+      kind: plugins
+      name: prometheus
+      scope: {}
+    value:
+      name: prometheus
+      config:
+        per_consumer: false

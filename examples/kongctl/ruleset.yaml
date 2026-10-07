@@ -1,0 +1,30 @@
+rules:
+  gateway-name:
+    description: Each example gateway declares a name.
+    given: $.ai_gateways[*]
+    severity: error
+    then:
+      field: name
+      function: truthy
+  model-identity:
+    description: Each model declares a stable ref.
+    given: $.ai_gateways[*].models[*]
+    severity: error
+    then:
+      field: ref
+      function: truthy
+  model-provider:
+    description: Each model target declares its provider name.
+    given: $.ai_gateways[*].models[*].targets[*]
+    severity: error
+    then:
+      field: provider
+      function: truthy
+  https-upstream:
+    description: Example model upstreams use HTTPS.
+    given: $.ai_gateways[*].models[*].targets[*].config.upstream_url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
