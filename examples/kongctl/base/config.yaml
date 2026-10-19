@@ -32,6 +32,10 @@ ai_gateways:
     name: example-ai
     display_name: Example AI Gateway
     description: Offline overlay demonstration
+    data_plane_certificates:
+      - ref: example-ai-cert
+        title: Example Data Plane Certificate
+        cert: !file certs/data-plane.pem
     model_providers:
       - ref: example-provider
         name: example-provider

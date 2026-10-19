@@ -30,3 +30,10 @@ patches:
     value:
       config:
         anonymize: [email, phone]
+  - op: replace
+    target:
+      kind: ai_gateway_data_plane_certificates
+      ref: example-ai-cert
+      scope: {ai_gateway: example-ai}
+    field: /cert
+    value: !file certs/data-plane.pem
