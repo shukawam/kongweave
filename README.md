@@ -231,7 +231,8 @@ Native resource schemas are **not** fully validated by Kongweave; use the offici
 | kongctl | `portals`, `apis`, `control_planes`, `application_auth_strategies`, `ai_gateways` | Explicit `ref`, root |
 | kongctl | `portal_pages` | `ref`, root with `portal`, or `portals[].pages`; `scope.portal` |
 | kongctl | `api_versions`, `api_documents`, `api_publications` | `ref`, root with `api`, or `apis[].versions/documents/publications`; `scope.api` |
-| kongctl | `ai_gateway_models`, `ai_gateway_model_providers`, `ai_gateway_policies` | `ref`, root with `ai_gateway`, or `ai_gateways[].models/model_providers/policies`; `scope.ai_gateway` |
+| kongctl | `ai_gateway_models`, `ai_gateway_model_providers`, `ai_gateway_policies`, `ai_gateway_data_plane_certificates` | `ref`, root with `ai_gateway`, or `ai_gateways[].models/model_providers/policies/data_plane_certificates`; `scope.ai_gateway` |
+| kongctl | `control_plane_data_plane_certificates` | `ref`, root with `control_plane`, or `control_planes[].data_plane_certificates`; `scope.control_plane` |
 
 The examples follow the [kongctl declarative resource reference](https://github.com/Kong/kongctl/blob/main/docs/declarative-resource-reference.md).
 AI model endpoint, model target, and routing differences are demonstrated using `targets[].config.upstream_url`, `targets[].name`, and `config.route`.

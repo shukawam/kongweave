@@ -238,7 +238,8 @@ Kongweaveはネイティブのリソーススキーマを**完全には検証し
 | kongctl | `portals`、`apis`、`control_planes`、`application_auth_strategies`、`ai_gateways` | 明示的な`ref`、ルートに配置 |
 | kongctl | `portal_pages` | `ref`、`portal`を指定してルートに配置するか、`portals[].pages`に配置。`scope.portal`を使用 |
 | kongctl | `api_versions`、`api_documents`、`api_publications` | `ref`、`api`を指定してルートに配置するか、`apis[].versions/documents/publications`に配置。`scope.api`を使用 |
-| kongctl | `ai_gateway_models`、`ai_gateway_model_providers`、`ai_gateway_policies` | `ref`、`ai_gateway`を指定してルートに配置するか、`ai_gateways[].models/model_providers/policies`に配置。`scope.ai_gateway`を使用 |
+| kongctl | `ai_gateway_models`、`ai_gateway_model_providers`、`ai_gateway_policies`、`ai_gateway_data_plane_certificates` | `ref`、`ai_gateway`を指定してルートに配置するか、`ai_gateways[].models/model_providers/policies/data_plane_certificates`に配置。`scope.ai_gateway`を使用 |
+| kongctl | `control_plane_data_plane_certificates` | `ref`、`control_plane`を指定してルートに配置するか、`control_planes[].data_plane_certificates`に配置。`scope.control_plane`を使用 |
 
 サンプルは[kongctlの宣言的設定リソースリファレンス](https://github.com/Kong/kongctl/blob/main/docs/declarative-resource-reference.md)に沿っています。
 AIモデルの接続先、モデルターゲット、ルーティングの差分は、`targets[].config.upstream_url`、`targets[].name`、`config.route`を使って表現しています。

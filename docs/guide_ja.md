@@ -290,7 +290,8 @@ baseと各操作後の結果は、有効かつ一意な識別子を持つ必要�
 | kongctl | `portals`、`apis`、`control_planes`、`application_auth_strategies`、`ai_gateways` | `ref` | ルート |
 | kongctl | `portal_pages` | `ref` | `portal`を指定したルート、または`portals[].pages`。`portal` scope |
 | kongctl | `api_versions`、`api_documents`、`api_publications` | `ref` | `api`を指定したルート、または`apis[].versions/documents/publications`。`api` scope |
-| kongctl | `ai_gateway_models`、`ai_gateway_model_providers`、`ai_gateway_policies` | `ref` | `ai_gateway`を指定したルート、または`ai_gateways[].models/model_providers/policies`。`ai_gateway` scope |
+| kongctl | `ai_gateway_models`、`ai_gateway_model_providers`、`ai_gateway_policies`、`ai_gateway_data_plane_certificates` | `ref` | `ai_gateway`を指定したルート、または`ai_gateways[].models/model_providers/policies/data_plane_certificates`。`ai_gateway` scope |
+| kongctl | `control_plane_data_plane_certificates` | `ref` | `control_plane`を指定したルート、または`control_planes[].data_plane_certificates`。`control_plane` scope |
 
 対応するdecKのService、Route、Consumerには、安定した名前またはユーザー名が必要です。
 Routeが異なるServiceの下にネストされていても、識別子はそれぞれのリソース種別全体で一意である必要があります。

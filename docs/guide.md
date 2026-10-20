@@ -287,7 +287,8 @@ The following table lists the supported resource collections; it is not a full s
 | kongctl | `portals`, `apis`, `control_planes`, `application_auth_strategies`, `ai_gateways` | `ref` | Root |
 | kongctl | `portal_pages` | `ref` | Root with `portal`, or `portals[].pages`; `portal` scope |
 | kongctl | `api_versions`, `api_documents`, `api_publications` | `ref` | Root with `api`, or `apis[].versions/documents/publications`; `api` scope |
-| kongctl | `ai_gateway_models`, `ai_gateway_model_providers`, `ai_gateway_policies` | `ref` | Root with `ai_gateway`, or `ai_gateways[].models/model_providers/policies`; `ai_gateway` scope |
+| kongctl | `ai_gateway_models`, `ai_gateway_model_providers`, `ai_gateway_policies`, `ai_gateway_data_plane_certificates` | `ref` | Root with `ai_gateway`, or `ai_gateways[].models/model_providers/policies/data_plane_certificates`; `ai_gateway` scope |
+| kongctl | `control_plane_data_plane_certificates` | `ref` | Root with `control_plane`, or `control_planes[].data_plane_certificates`; `control_plane` scope |
 
 Every supported decK Service, Route, and Consumer needs a stable name or username.
 Their identifiers are unique across their respective resource kinds, even when Routes are nested under different Services.

@@ -67,7 +67,7 @@ type adapter struct {
 // scopeKinds maps a scope key to the collection kind its identifier refers to.
 var scopeKinds = map[string]string{
 	"service": "services", "route": "routes", "consumer": "consumers",
-	"api": "apis", "portal": "portals", "ai_gateway": "ai_gateways",
+	"api": "apis", "portal": "portals", "ai_gateway": "ai_gateways", "control_plane": "control_planes",
 }
 
 // pluginScopes are the decK plugin binding fields; a plugin may combine them.
@@ -125,6 +125,8 @@ func newAdapter(format string) (adapter, error) {
 			{Kind: "ai_gateway_models", Identity: "ref", Parent: "ai_gateways", Nested: "models", Scope: "ai_gateway"},
 			{Kind: "ai_gateway_model_providers", Identity: "ref", Parent: "ai_gateways", Nested: "model_providers", Scope: "ai_gateway"},
 			{Kind: "ai_gateway_policies", Identity: "ref", Parent: "ai_gateways", Nested: "policies", Scope: "ai_gateway"},
+			{Kind: "ai_gateway_data_plane_certificates", Identity: "ref", Parent: "ai_gateways", Nested: "data_plane_certificates", Scope: "ai_gateway"},
+			{Kind: "control_plane_data_plane_certificates", Identity: "ref", Parent: "control_planes", Nested: "data_plane_certificates", Scope: "control_plane"},
 		}
 	default:
 		return a, fmt.Errorf("format must be deck or kongctl")
@@ -185,9 +187,10 @@ func (a adapter) unsupportedChildren(kind string) []string {
 	case "api_documents":
 		return []string{"children"}
 	case "control_planes":
-		return []string{"gateway_services", "dataplane_certificates", "data_plane_certificates"}
+		// dataplane_certificates is the pre-rename spelling; kongctl documents data_plane_certificates.
+		return []string{"gateway_services", "dataplane_certificates"}
 	case "ai_gateways":
-		return []string{"agents", "auth_strategies", "identity_providers", "ca_certificates", "certificates", "config_stores", "consumer_groups", "consumers", "custom_policies", "data_plane_certificates", "mcp_servers", "snis", "vaults"}
+		return []string{"agents", "auth_strategies", "identity_providers", "ca_certificates", "certificates", "config_stores", "consumer_groups", "consumers", "custom_policies", "mcp_servers", "snis", "vaults"}
 	}
 	return nil
 }
