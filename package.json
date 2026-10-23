@@ -12,9 +12,6 @@
   },
   "devDependencies": {
     "vite": "8.3.4",
-    "vitepress": "1.6.4"
-  },
-  "overrides": {
-    "vite": "$vite"
+    "vitepress": "2.0.0-alpha.20"
   }
 }
