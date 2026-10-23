@@ -1,6 +1,6 @@
 # Maintain the documentation site
 
-The documentation uses [VitePress](https://vuejs.github.io/vitepress/v1/) and is published to GitHub Pages at <https://shukawam.github.io/kongweave/> after Pages is enabled and the workflow succeeds.
+The documentation uses [VitePress](https://vitepress.dev/) and is published to GitHub Pages at <https://shukawam.github.io/kongweave/> after Pages is enabled and the workflow succeeds.
 Node.js 24 or later is required only to develop the website; the Kongweave CLI remains standalone.
 
 ## Preview locally
@@ -41,9 +41,12 @@ Local search builds its index from the published pages and requires no external 
 The Japanese include page places its search index in the correct locale while preserving the original Markdown path.
 Search uses word segmentation for both English and Japanese.
 
-The dependency lockfile pins the build toolchain.
-Vite is explicitly overridden to the patched 6.4 line because VitePress 1.x otherwise selects Vite 5.
-Keep this override until a stable VitePress release includes a patched dependency, and verify dependency updates with `npm run docs:build` and `npm audit`.
+The dependency lockfile pins Vite 8.3.4 and VitePress 2.0.0-alpha.20.
+VitePress 2 declares support for Vite 8, so no dependency override or separate esbuild installation is needed.
+VitePress is deliberately pinned to an alpha release to use this compatible toolchain; assess future upgrades before changing the pin.
+VitePress 1.x cannot be upgraded to Vite 8 through an override alone: its bundle generation and rendering rely on APIs that changed in Vite 8.
+Verify dependency updates with `npm ci`, `npm run docs:build`, and `npm audit`, and check navigation, both search locales, and the local development server.
+Dependabot leaves major Vite upgrades for a coordinated VitePress upgrade.
 
 ## Enable GitHub Pages
 

@@ -4,6 +4,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # Upgrade Vite majors together with a compatible VitePress release.
+    ignore:
+      - dependency-name: vite
+        update-types: ['version-update:semver-major']
     groups:
       documentation:
         patterns: ['*']
