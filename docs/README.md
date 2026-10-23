@@ -22,3 +22,7 @@ Both languages use the same executable examples.
 
 Builds run offline and do not deploy configurations.
 Official-tool checks and their limits are described in each guide.
+
+## Contribute to the documentation
+
+See [Maintain the documentation site](site.md) for local previews, content editing, and GitHub Pages setup.
