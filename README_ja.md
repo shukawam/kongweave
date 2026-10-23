@@ -13,6 +13,7 @@ KongやKonnectへの接続、テンプレートの実行、環境変数の値の
 Kongweaveは独立した初期段階のMVPであり、Kongの公式ツールではありません。
 
 詳しい利用手順、設定リファレンス、CLIの使い方、トラブルシューティングは[利用ガイド](docs/guide_ja.md)を参照してください。
+GitHub Pagesを有効にすると、ナビゲーションと検索付きの[ドキュメントサイト](https://shukawam.github.io/kongweave/ja/guide.html)を利用できます。[サイトの設定手順](docs/site.md)を参照してください。
 
 ## なぜKongweaveが必要なのか
 

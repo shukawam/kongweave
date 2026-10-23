@@ -12,6 +12,7 @@ It never connects to Kong or Konnect, executes templates, reads environment valu
 This is an independent, early MVP, not an official Kong tool.
 
 Read the [user guide](docs/guide.md) for a complete workflow, configuration reference, CLI usage, and troubleshooting.
+The [documentation site](https://shukawam.github.io/kongweave/) provides navigation and search once GitHub Pages is enabled; see the [site setup](docs/site.md).
 
 ## Why Kongweave?
 
