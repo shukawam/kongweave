@@ -1,3 +1,5 @@
+<img src="docs/public/logo.svg" alt="" width="64" height="64" align="left">
+
 # Kongweave
 
 [English](README.md) | [日本語](README_ja.md)

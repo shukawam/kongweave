@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Kongweave">
+  <style>
+    :root { --kw-base: #001408; --kw-thread: #9ccc00; }
+    @media (prefers-color-scheme: dark) {
+      :root { --kw-base: #e8f5d0; --kw-thread: #ccff00; }
+    }
+  </style>
+  <!-- Masks cut a gap in the strand underneath so the over/under weave reads at favicon size. -->
+  <mask id="under-b">
+    <rect width="64" height="64" fill="#fff"/>
+    <path d="M8 20 L22 44" stroke="#000" stroke-width="14" fill="none"/>
+    <path d="M38 20 L54 44" stroke="#000" stroke-width="14" fill="none"/>
+  </mask>
+  <mask id="under-a">
+    <rect width="64" height="64" fill="#fff"/>
+    <path d="M22 20 L38 44" stroke="#000" stroke-width="14" fill="none"/>
+  </mask>
+  <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 44 L22 20 L38 44 L54 20" stroke="var(--kw-base)" mask="url(#under-b)"/>
+    <path d="M8 20 L22 44 L38 20 L54 44" stroke="var(--kw-thread)" mask="url(#under-a)"/>
+  </g>
+</svg>

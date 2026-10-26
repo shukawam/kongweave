@@ -14,6 +14,11 @@ export default defineConfig({
   title: 'Kongweave',
   description: 'Environment overlays for native decK and kongctl YAML.',
   base: '/kongweave/',
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/kongweave/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/kongweave/favicon.png' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/kongweave/apple-touch-icon.png' }]
+  ],
   // Exclude local notes and the Japanese source rendered by ja/guide.md.
   srcExclude: ['design.md', 'verification.md', 'guide_ja.md'],
   rewrites: {
@@ -107,6 +112,7 @@ export default defineConfig({
     }
   },
   themeConfig: {
+    logo: '/logo.svg',
     i18nRouting: false,
     socialLinks: [{ icon: 'github', link: repository }],
     outline: { level: [2, 3] },
